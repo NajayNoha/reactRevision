@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = [{
     id: 1, 
     text: "fjskfksjhdlhpmd",
-    completed: false
+    completed: true
 }]
 
 const todoSlice = createSlice({
@@ -15,12 +15,12 @@ const todoSlice = createSlice({
             state.push(actions.payload)
         },
         deleteTodo: (state, actions)=>{
-            state.filter((e)=>{return e.id!=actions.payload})
+            return state.filter((e)=>{return e.id != actions.payload})
         },
         toggleTodo: (state, actions)=>{
-            state.map((e)=>{
-                if(e.id === actions.payload){
-                    e.completed = !e.completed 
+            return state.map((e)=>{
+                if(e.id == actions.payload){
+                    return {...e, completed: !e.completed} 
                 }
                 return e;
             })
